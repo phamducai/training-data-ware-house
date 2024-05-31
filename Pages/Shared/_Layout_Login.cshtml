@@ -1,0 +1,82 @@
+@* @using System.Security.Claims
+@{
+
+    // ヘッダーページ
+    var sessionValue = false;
+    var loginUser = "";
+    if (User.Claims.Count() > 0)
+    {
+        sessionValue = true;
+        foreach (Claim c in User.Claims)
+        {
+            if (c.Type == ClaimTypes.Name)
+            {
+                loginUser = c.Value;
+            }
+        }
+    }
+}
+ *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Compass - 人事考課</title>
+    <script src="https://kit.fontawesome.com/124c8adc40.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <!--   <link rel="stylesheet" href="~/public_menu.css" asp-append-version="true" /> -->
+    <link rel="stylesheet" href="~/LoginTest.styles.css" asp-append-version="true" />
+    <link rel="stylesheet/less" type="text/css" href="~/css/form.less" asp-append-version="true" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="~/js/select2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=Array.from%2CObject.assign"></script>
+    <script script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+    <link rel="stylesheet" href="~/lib/choices/choices.min.css" />
+</head>
+<body>
+    <div class="container-fluid">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer bg-footer">
+        <div class="container footercolor">
+            &copy; <span id="year"></span> - Compass - 人事考課  <a class="main-color footercolor" asp-area="" asp-page="/Privacy">Privacy</a>
+
+        </div>
+
+
+        <div class="version-right">
+            <span>version 0.14.4</span>
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById("year").innerHTML = showYear();
+            function showYear() {
+                var now = new Date();
+                var year = now.getFullYear();
+
+                return year;
+            }
+        </script>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/addclass.js" asp-append-version="true"></script>
+    <script src="~/lib/drag-js/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/lib/choices/choices.min.js"></script>
+    <script src="~/js/ChoiceOption.js" asp-append-version="true"></script>
+    <script src="~/lib/debounce/ba-throttle-debounce.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

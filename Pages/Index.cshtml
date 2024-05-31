@@ -1,0 +1,24 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Update Location";
+}
+
+<h2>Update Location @Model.Total</h2>
+<div class="text-center py-5">
+    <h1 class="text-4xl font-bold">Welcome to ASP.NET Core with Tailwind CSS</h1>
+    <p class="mt-5 text-lg">This is an example of using Tailwind CSS from a CDN in an ASP.NET Core application.</p>
+</div>
+<form id="updateLocationForm" method="post">
+    <div class="form-group">
+        <label for="driverId">Driver ID</label>
+        <input type="number" id="driverId" name="DriverId" class="form-control" />
+    </div>
+    <input type="hidden" id="latitude" name="Latitude" />
+    <input type="hidden" id="longitude" name="Longitude" />
+    <button type="submit" class="btn btn-primary" onclick="startTracking()">Start Tracking</button>
+</form>
+ @section Scripts {
+        <script src="~/js/index.js" asp-append-version="true"></script>
+    }   

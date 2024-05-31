@@ -1,0 +1,77 @@
+﻿@page
+@model LoginModel
+@{
+    Layout = "_Layout_Login";
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/js/Login.js"></script>
+}
+<div>
+    <form method="post">
+        <div class="row vh-100">
+            @*Left side*@
+            <div class="col-sm-5 text-black left-panel position-relative">
+                <div class="container-logo">
+                    <div class="logo-login"></div>
+                </div>
+                <div class="wrapper-main-content">
+                    <div class="main-container">
+                        <div class="container-item">
+                            <div class="title-login padding-title-top">
+                                ログイン
+                            </div>
+
+                            <a class="btn hover-btn-social btn-login-microsoft height-component m-bot"
+                               asp-page="Login" asp-page-handler="LoginAD" asp-route-returnUrl="@Model.ReturnUrl">
+                                <div class="microsoft-icon me-2"></div>
+                                <div class="text-microsoft">Microsoftを使用してサインイン</div>
+                            </a>
+                            <a class="btn hover-btn-social btn-login-microsoft height-component"
+                               asp-page="Login" asp-page-handler="LoginB2C" asp-route-returnUrl="@Model.ReturnUrl">
+                                <div class="google-icon me-2"></div>
+                                <div class="text-microsoft">Googleを使用してサインイン</div>
+                            </a>
+
+                        </div>
+                       
+                            <div class="separator">or</div>
+                        
+                        <div class="container-item pb-3">
+                            <div class="login_message"></div>
+                            <div class="title-login padding-title ">
+                                Eメール
+                            </div>
+                            <input class="form-control form-control-lg height-component border-input-item" type="text" asp-for="user_id" placeholder="Eメール" />
+                        </div>
+                        <div class="container-item">
+                            <div class="title-login padding-title">
+                                パスワード
+                            </div>
+                            <div class="d-flex flex-column flex-1 position-div">
+                                <input class="form-control form-control-lg height-component border-input-item id_password" type="password" asp-for="password" placeholder="パスワード" />
+                                <i class="far fa-eye toggle-icon togglePassword"></i>
+                            </div>
+                        </div>
+                        <div class="forgot-pw-container">
+                            <a asp-page="./ForgotPassword">パスワードをお忘れですか？</a>
+                        </div>
+                        <button class="btn btn-lg btn-login height-component" formmethod="post" type="submit">
+                            ログイン
+                        </button>
+                    </div>
+                </div>
+            </div>
+            @*Circle line*@
+            <div class="col-sm-1 mid_panel d-none small-block-login">
+                <div class="circle_panel"></div>
+            </div>
+            @*Right side*@
+            <div class="col-sm-6 px-0 d-none small-block-login">
+                <div class="right_panel">
+                    <div class="logo-background-login"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
